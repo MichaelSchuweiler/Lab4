@@ -79,3 +79,18 @@ describe "testing splicing", ->
   it "should change all numbers in the given indices to 864", ->
     assert.deepEqual(turnTo864(arr5, 3, 6), testArr3)
 
+
+person = {name: n, DOB: dob }
+
+{name: x, DOB: y} = person
+
+[x, y] = ["John", "07/10/1980"]
+
+
+personArr = (person) ->
+  arr = [person.x, person.y]
+  return arr
+
+describe "testing printPerson", ->
+  it "should print the person's name and DOB", ->
+    assert.deepEqual(personArr(person1), testPersonArr)
