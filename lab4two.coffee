@@ -114,14 +114,14 @@ testingEqual = (x, y) ->
      if x isnt y
        false
 
+describe "testing alias2", ->
+  it "should do the same as above", ->
+    assert.equal(testingEqual(7, "hello"), false)
+
 
 describe "testing alias", ->
   it "should test if two objects are equal", ->
     assert.equal(testingEqual(7, 7), true)
-
-describe "testing alias", ->
-  it "should do the same as above", ->
-    assert.equal(testingEqual(7, "hello"), false)
 
 
 testExistance = (x) ->
@@ -145,7 +145,10 @@ arr11 = []
 testArr8 = []
 
 switchingIndex = (arr) ->
-  [arr[0]..arr[arr.length - 1]] = [arr[arr.length - 1]..arr[0]]
+  arrThis = [arr[0]..arr[arr.length - 1]]
+  arrThat = [arr[arr.length - 1]..arr[0]]
+  arrThis = arrThat
+  arrThis
 
 describe "testing destructuring", ->
   it "should turn reverse the arrays", ->
@@ -157,7 +160,10 @@ describe "testing destructuring", ->
 t1 = ["start"]
 m1 = ["stuff", "inside", "this", "array"]
 b1 = ["end"]
-testArr9 = ["start", "stuff", "inside", "this", "array", "end"]
+testArr9 = [["start"], ["stuff", "inside", "this", "array"], ["end"]]
+
+testArr10 = [[], [], []]
+testArr11 = [[7], [], [10]]
 
 createTheArray = (t, m..., b) ->
   arr = [t, m..., b]
@@ -165,3 +171,5 @@ createTheArray = (t, m..., b) ->
 describe "testing splats", ->
   it "should make an array of top, middle, and bottom. where top and bottom are 1 item and middle has no limit", ->
     assert.deepEqual(createTheArray(t1, m1, b1), testArr9)
+    assert.deepEqual(createTheArray([], [], []), testArr10)
+    assert.deepEqual(createTheArray([7], [], [10]), testArr11)
