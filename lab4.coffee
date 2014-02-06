@@ -74,23 +74,94 @@ testArr3 = [0, 1, 2, 864, 864, 864, 6]
 
 turnTo864 = (arr, x, y) ->
   arr[x..y] = [864, 864, 864]
+  arr
 
 describe "testing splicing", ->
   it "should change all numbers in the given indices to 864", ->
-    assert.deepEqual(turnTo864(arr5, 3, 6), testArr3)
+    assert.deepEqual(turnTo864(arr5, 3, 5), testArr3)
 
 
-person = {name: n, DOB: dob }
+arr6 = [0, 1, 2, 3, 4, 5]
+testArr4 = [0, 1, 7, 3, 4, 5]
 
-{name: x, DOB: y} = person
+add7 = (arr) ->
+  middle = arr.length / 2 - 1
+  arr[middle] = 7
+  arr
 
-[x, y] = ["John", "07/10/1980"]
+describe "testing splicing", ->
+  it "should replace the middle index (rounded down) to 7", ->
+    assert.deepEqual(add7(arr6), testArr4)
 
 
-personArr = (person) ->
-  arr = [person.x, person.y]
-  return arr
+arr7 = [0, 1, 2, 3, 4]
+arr8 = [9, 10, 11]
+testArr5 = [0, 1, 9, 10, 11, 3, 4]
 
-describe "testing printPerson", ->
-  it "should print the person's name and DOB", ->
-    assert.deepEqual(personArr(person1), testPersonArr)
+
+insertArr = (arr1, arr2, i) ->
+  arr1[i..i] = arr2
+  arr1
+
+describe "testing splicing", ->
+  it "should replace given index in an array with another array", ->
+    assert.deepEqual(insertArr(arr7, arr8, 2), testArr5)
+
+testingEqual = (x, y) ->
+  if x is y
+     yes
+    else
+     if x isnt y
+       false
+
+
+describe "testing alias", ->
+  it "should test if two objects are equal", ->
+    assert.equal(testingEqual(7, 7), true)
+
+describe "testing alias", ->
+  it "should do the same as above", ->
+    assert.equal(testingEqual(7, "hello"), false)
+
+
+testExistance = (x) ->
+  if x?
+     yes
+    else
+     no
+
+
+describe "testing existential", ->
+  it "should test if an object exists", ->
+    assert.equal(testExistance(arr), true)
+    assert.equal(testExistance(), false)
+    assert.equal(testExistance(testingEqual), true)
+
+arr9 = [1, 2, 3]
+testArr6 = [3, 2, 1]
+arr10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+testArr7 = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+arr11 = []
+testArr8 = []
+
+switchingIndex = (arr) ->
+  [arr[0]..arr[arr.length - 1]] = [arr[arr.length - 1]..arr[0]]
+
+describe "testing destructuring", ->
+  it "should turn reverse the arrays", ->
+    assert.deepEqual(switchingIndex(arr9), testArr6)
+    assert.deepEqual(switchingIndex(arr10), testArr7)
+    assert.deepEqual(switchingIndex(arr11), testArr8)
+
+
+t1 = ["start"]
+m1 = ["stuff", "inside", "this", "array"]
+b1 = ["end"]
+testArr9 = ["start", "stuff", "inside", "this", "array", "end"]
+
+createTheArray = (t, m..., b) ->
+  arr = [t, m..., b]
+
+describe "testing splats", ->
+  it "should make an array of top, middle, and bottom. where top and bottom are 1 item and middle has no limit", ->
+    assert.deepEqual(createTheArray(t1, m1, b1), testArr9)
