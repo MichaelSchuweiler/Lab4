@@ -69,5 +69,14 @@ letterToPercent = (letter) ->
 percentCredit = (letter, cred) ->
   letterToPercent(letter) * cred
 
+makeGPA = (g1, g2, g3, g4) ->
+  gradeSum = g1 + g2 + g3 + g4
+  gradeSum = gradeSum / 4
+  gradeSum = gradeSum * 100
+  gradeSum = Math.round(gradeSum)
+  return gradeSum / 100
+
+
 module.exports.letterToPercent = letterToPercent
 module.exports.percentCredit = percentCredit
+module.exports.makeGPA = makeGPA

@@ -1,6 +1,7 @@
 assert = require 'assert'
 letterToPercent = require('./routes/gpa').letterToPercent
 percentCredit = require('./routes/gpa').percentCredit
+makeGPA = require('./routes/gpa').makeGPA
 
 
 
@@ -18,5 +19,7 @@ describe "testing percentCredit", ->
   it "should give 1.38 for a D+ in a 2 credit course", ->
     assert.equal(percentCredit("D+", 2), 1.38)
 
+
 describe "testing makeGPA", ->
-  it "should give __ for a 3.72, 1.38, 2.57, and 4.0"
+  it "should give __ for a 3.72, 1.38, 2.57, and 4.0", ->
+    assert.equal(makeGPA(3.72, 1.38, 2.57, 4.0), 2.92)
