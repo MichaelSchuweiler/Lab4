@@ -21,5 +21,5 @@ describe "testing percentCredit", ->
 
 
 describe "testing makeGPA", ->
-  it "should give __ for a 3.72, 1.38, 2.57, and 4.0", ->
+  it "should give 2.92 for a 3.72, 1.38, 2.57, and 4.0", ->
     assert.equal(makeGPA(3.72, 1.38, 2.57, 4.0), 2.92)

@@ -5,7 +5,7 @@ Module dependencies.
  */
 
 (function() {
-  var app, express, form, http, path, routes, user;
+  var app, express, gpa, http, path, routes, user;
 
   express = require("express");
 
@@ -13,7 +13,7 @@ Module dependencies.
 
   user = require("./routes/user");
 
-  form = require("./routes/gpa");
+  gpa = require("./routes/gpa");
 
   http = require("http");
 
@@ -51,9 +51,9 @@ Module dependencies.
 
   app.get("/users", user.list);
 
-  app.get("/gpa", form.formResponse);
+  app.get("/gpa", gpa.formResponse);
 
-  app.post("/gpa", form.postResponse);
+  app.post("/gpa", gpa.postResponse);
 
   http.createServer(app).listen(app.get("port"), function() {
     return console.log("Express server listening on port " + app.get("port"));

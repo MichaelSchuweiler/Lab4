@@ -1,16 +1,16 @@
-formString = '<form method="post" action="/form">\n<label>Grade: </label>\n
+formString = '<form method="post" action="/gpa">\n<label>Grade: </label>\n
               <input type="text" id="grade1" value="" width="5"/>\n
               <select id="credit1">\n<option>1</option>\n<option>2</option>\n
-              <option>3</option>\n<option>4</option>\n</select><br />\n<label>Grade: </label>\n
+              <option>3</option>\n<option>4</option>\n<option>5</option>\n</select><br />\n<label>Grade: </label>\n
               <input type="text" id="grade2" value="" width="5"/>\n
               <select id="credit2">\n<option>1</option>\n<option>2</option>\n
-              <option>3</option>\n<option>4</option>\n</select><br />\n
+              <option>3</option>\n<option>4</option>\n<option>5</option>\n</select><br />\n
               <label>Grade: </label>\n<input type="text" id="grade3" value="" width="5"/>\n
               <select id="credit3">\n<option>1</option>\n<option>2</option>\n
-              <option>3</option>\n<option>4</option>\n</select><br />\n
+              <option>3</option>\n<option>4</option>\n<option>5</option>\n</select><br />\n
               <label>Grade: </label>\n<input type="text" id="grade4" value="" width="5"/>\n
               <select id="credit4">\n<option>1</option>\n<option>2</option>\n
-              <option>3</option>\n<option>4</option>\n</select><br />\n</form> '
+              <option>3</option>\n<option>4</option>\n<option>5</option>\n</select><br />\n</form> '
 
 headerString = '<!DOCTYPE html>\n
 <html>\n
@@ -22,10 +22,15 @@ headerString = '<!DOCTYPE html>\n
 footerString = '</body>\n</html>'
 
 exports.formResponse = (req, res) ->
-  res.render = 'form'
+  res.render = 'gpa'
 
 exports.postResponse = (req, res) ->
-  res.send headerString + formString + req.body.text + footerString
+  g1 = percentCredit(req.getElementById("grade1").value, req.getElementById("credit1").value)
+  g2 = percentCredit(req.getElementById("grade2").value, req.getElementById("credit2").value)
+  g3 = percentCredit(req.getElementById("grade3").value, req.getElementById("credit3").value)
+  g4 = percentCredit(req.getElementById("grade4").value, req.getElementById("credit4").value)
+  GPA = makeGPA(g1, g2, g3, g4)
+  res.send headerString + formString + '<p>Your GPA Is ' + GPA + '</p>' + footerString
 
 #gpa functions
 
