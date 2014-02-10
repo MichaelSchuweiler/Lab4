@@ -65,4 +65,9 @@ letterToPercent = (letter) ->
                       else
                         if (letter is "F")
                           return .6
+
+percentCredit = (letter, cred) ->
+  letterToPercent(letter) * cred
+
 module.exports.letterToPercent = letterToPercent
+module.exports.percentCredit = percentCredit
