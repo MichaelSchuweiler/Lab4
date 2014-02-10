@@ -26,3 +26,43 @@ exports.formResponse = (req, res) ->
 
 exports.postResponse = (req, res) ->
   res.send headerString + formString + req.body.text + footerString
+
+#gpa functions
+
+letterToPercent = (letter) ->
+  if (letter is "A")
+    return .100
+  else
+    if (letter is "A-")
+      return .93
+    else
+      if (letter is "B+")
+        return .89
+      else
+        if (letter is "B")
+          return .86
+        else
+          if (letter is "B-")
+            return .82
+          else
+            if (letter is "C+")
+              return .79
+            else
+              if (letter is "C")
+                return .76
+              else
+                if (letter is "C-")
+                  return .72
+                else
+                  if (letter is "D+")
+                    return .69
+                  else
+                    if (letter is "D")
+                      return .66
+                    else
+                      if (letter is "D-")
+                        return .62
+                      else
+                        if (letter is "F")
+                          return .6
+module.exports.letterToPercent = letterToPercent
